@@ -49,8 +49,7 @@ More features will be added as development continues.
 
 ## Project Status
 
-This project is currently in early setup phase.  
-Frontend scaffolding has been initialized and backend setup is coming next.
+Currently in early Minimum Viable Product phase.  
 
 ---
 
