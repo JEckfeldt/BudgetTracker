@@ -3,8 +3,6 @@ import BudgetHistory from "@/components/BudgetHistory";
 
 export default function Budgets() {
   return (
-    <AppLayout>
       <BudgetHistory/>
-    </AppLayout>
   );
 }

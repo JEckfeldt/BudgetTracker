@@ -7,26 +7,27 @@ import { Budget } from "@/types/budget";
 
 export default function BudgetHistory() {
 
-  const budgets: Budget[] = [
-    {
-      id: 1,
-      name: "Food",
-      limit: 500,
-      spent: 320,
-    },
-    {
-      id: 2,
-      name: "Transportation",
-      limit: 200,
-      spent: 80,
-    },
-    {
-      id: 3,
-      name: "Entertainment",
-      limit: 300,
-      spent: 150,
-    },
-  ];
+    // sample data
+    const budgets: Budget[] = [
+        {
+        id: 1,
+        name: "Food",
+        limit: 500,
+        spent: 320,
+        },
+        {
+        id: 2,
+        name: "Transportation",
+        limit: 200,
+        spent: 80,
+        },
+        {
+        id: 3,
+        name: "Entertainment",
+        limit: 300,
+        spent: 150,
+        },
+    ];
 
 
   return (

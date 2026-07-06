@@ -1,10 +1,11 @@
-import AppLayout from "@/components/AppLayout";
-import TransactionHistory from "@/components/TransactionHistory";
-
-export default function Home() {
+export default function Dashboard() {
   return (
-    <AppLayout>
-      <h1>Dashboard</h1>
-    </AppLayout>
+    <div>
+      <h1 className="text-3xl font-bold">
+        Dashboard
+      </h1>
+
+      {/* dashboard cards later */}
+    </div>
   );
 }
