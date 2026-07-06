@@ -1,7 +1,11 @@
-// Budgets Page
+import AppLayout from "@/components/AppLayout";
 
-export default function Transactions() {
-    return (
-        <h1>Budgets</h1>
-    )
+export default function Budgets() {
+  return (
+    <AppLayout>
+      <h1 className="text-3xl font-bold">
+        Budgets
+      </h1>
+    </AppLayout>
+  );
 }
