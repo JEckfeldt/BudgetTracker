@@ -10,7 +10,7 @@ export default function TransactionRow({
 
       <div>
         <p className="font-medium text-[#1F2A24]">
-          {transaction.name}
+          {transaction.description}
         </p>
 
         <p className="text-sm text-[#5C6B63]">
