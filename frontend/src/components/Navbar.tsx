@@ -4,7 +4,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto h-full flex items-center justify-between px-6">
 
         <div className="flex gap-6">
-          <a className="text-gray-900 hover:text-black" href="/">Dashboard</a>
+          <a className="text-gray-900 hover:text-black" href="/dashboard">Dashboard</a>
           <a className="text-gray-900 hover:text-black" href="/transactions">Transactions</a>
           <a className="text-gray-900 hover:text-black" href="/budgets">Budgets</a>
         </div>

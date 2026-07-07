@@ -1,11 +1,5 @@
-export default function Dashboard() {
-  return (
-    <div>
-      <h1 className="text-3xl font-bold">
-        Dashboard
-      </h1>
+import { redirect } from "next/navigation";
 
-      {/* dashboard cards later */}
-    </div>
-  );
+export default function Home() {
+  redirect("/dashboard");
 }
