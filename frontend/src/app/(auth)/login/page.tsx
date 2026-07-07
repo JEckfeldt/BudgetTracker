@@ -1,6 +1,39 @@
+"use client";
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+
 // Login page
 
 export default function LoginPage() {
+  const router = useRouter();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  // sends the login credentials to the middleware, which handles the jwt saving as http only cookie
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+
+    const response = await fetch("/api/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
+
+    if (response.ok) {
+      router.push("/dashboard");
+    } else {
+      const data = await response.json();
+      alert(data.detail);
+    }
+  }
+
   return (
     <main className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white text-gray-900 p-8 rounded-xl shadow-md w-full max-w-md">
@@ -8,13 +41,15 @@ export default function LoginPage() {
           Budget Tracker
         </h1>
 
-        <form className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm mb-1 text-gray-800">
               Email
             </label>
             <input
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full border rounded-lg px-3 py-2 text-gray-900 placeholder-gray-400"
               placeholder="you@example.com"
             />
@@ -26,6 +61,8 @@ export default function LoginPage() {
             </label>
             <input
               type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="w-full border rounded-lg px-3 py-2 text-gray-900 placeholder-gray-400"
               placeholder="••••••••"
             />

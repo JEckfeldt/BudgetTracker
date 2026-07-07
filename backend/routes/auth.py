@@ -3,14 +3,14 @@
 
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from fastapi.security import OAuth2PasswordRequestForm
+from fastapi.security import OAuth2PasswordRequestForm, HTTPBearer, HTTPAuthorizationCredentials
 
 from database import get_db
 from models import User
 from schemas.user import UserCreate, UserResponse, Token
 
 from auth.password import hash_password, verify_password
-from auth.jwt import create_access_token
+from auth.jwt import create_access_token, verify_token
 
 
 router = APIRouter(
@@ -19,6 +19,7 @@ router = APIRouter(
 )
 
 
+# Add a new user given some credentials
 @router.post("/register", response_model=UserResponse)
 def register(
     user: UserCreate,
@@ -45,7 +46,7 @@ def register(
 
     return new_user
 
-
+# Validate user credentials
 @router.post("/login", response_model=Token)
 def login(
     form_data: OAuth2PasswordRequestForm = Depends(),
@@ -71,4 +72,28 @@ def login(
     return {
         "access_token": token,
         "token_type": "bearer"
+    }
+
+
+
+# Validate a given JWT for access to the pages
+security = HTTPBearer()
+
+@router.get("/verify")
+def verify(
+    credentials: HTTPAuthorizationCredentials = Depends(security)
+):
+    token = credentials.credentials
+
+    payload = verify_token(token)
+
+    if payload is None:
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid token"
+        )
+
+    return {
+        "valid": True,
+        "user_id": payload["sub"]
     }
